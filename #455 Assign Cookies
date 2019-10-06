@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int findContentChildren(vector<int>& g, vector<int>& s) 
+    {
+        if(g.size() == 0 || s.size() == 0)
+            return 0;
+        
+        sort(g.begin(), g.end());
+        sort(s.begin(), s.end());
+        
+        int content = 0;
+        int cookies = 0;
+        int child = 0;
+        bool keepGoing = true;
+        
+        while(keepGoing)
+        {
+            if(s[cookies] >= g[child])
+            {
+                content++;
+                cookies++;
+                child++;
+            }
+            
+            else if(g[child] > s[cookies])
+            {
+                cookies++;
+            }
+            
+            if(cookies == s.size() || child == g.size())
+            {
+                keepGoing = false;
+            }
+        }
+        
+        return content;
+    }
+};
