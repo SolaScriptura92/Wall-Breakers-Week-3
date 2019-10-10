@@ -1,0 +1,36 @@
+class Solution {
+public:
+    bool isSubsequence(string s, string t) 
+    {
+        if(s == "")
+            return true;
+        
+        else if(s.length() > t.length())
+            return false;
+        
+        vector<int> firstCharIndices;
+        int count = 0;
+        
+        for(int i = 0; i < t.length(); i++)
+        {
+            if(t[i] == s[0])
+                firstCharIndices.push_back(i);
+        }
+        
+        for(int j = 0; j < firstCharIndices.size(); j++)
+        {
+            count = 1; //first char
+            
+            for(int k = firstCharIndices[j] + 1; k < t.length(); k++)
+            {
+                if(s[count] == t[k])
+                    count++;
+                
+                if(count == s.size())
+                    return true;
+            }
+        }
+        
+        return false;      
+    }
+};
