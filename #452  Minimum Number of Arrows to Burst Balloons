@@ -1,0 +1,38 @@
+bool sortByLastCol(const vector<int>& x, const vector<int>& y)
+{
+    return x[1] < y[1];
+}
+
+class Solution {
+public:
+    int findMinArrowShots(vector<vector<int>>& points) 
+    {
+        if(points.size() == 0)
+            return 0;
+        
+        if(points.size() == 1)
+            return 1;
+        
+        int numArrows = 1; //necessary to pop the first one
+        int pairDiff;
+        int prevDiff;
+        
+        sort(points.begin(), points.end(), sortByLastCol);
+        
+        int lowestBound = points[0][0];
+        int highestBound = points[0][1];
+        
+        for(int i = 1; i < points.size(); i++)
+        {
+            pairDiff = points[i][1] - points[i][0];
+            
+            if(points[i][0] > highestBound)
+            {
+                highestBound = points[i][1];
+                numArrows++;
+            }
+        }
+        
+        return numArrows;
+    }
+};
