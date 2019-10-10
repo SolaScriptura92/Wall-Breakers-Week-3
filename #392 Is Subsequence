@@ -8,7 +8,7 @@ public:
         else if(s.length() > t.length())
             return false;
         
-        vector<int> firstCharIndices;
+        vector<int> firstCharIndices; //store all indices where the first character in string s occurs in string t
         int count = 0;
         
         for(int i = 0; i < t.length(); i++)
